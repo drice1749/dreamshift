@@ -99,6 +99,28 @@ h2 { font-size: 52px; line-height: 1.05; letter-spacing: -.03em; margin: 12px 0 
 .vis.on-watch img { width: 200px; border-radius: 52px; }
 .vis.on-ipad img { width: 440px; border-radius: 26px; }
 
+/* Scrolling along the night (Daniel, 2026-10-24): the line lights up as you go,
+   and each screen grows to full size as it reaches the middle of the window.
+   CSS scroll-driven animations where supported; timeline.js does the same
+   elsewhere; nothing moves with "reduce motion" on. */
+.timeline::after { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -.5px;
+  background: linear-gradient(180deg, var(--purple2), var(--sand)); transform-origin: top; transform: scaleY(var(--lit, 0));
+  box-shadow: 0 0 12px rgba(169, 158, 224, .45); border-radius: 2px; }
+.vis img { transform: scale(var(--zoom, 1)); opacity: var(--glow, 1); will-change: transform; }
+@keyframes ds-line { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes ds-zoom {
+  0% { transform: scale(.84); opacity: .35; }
+  45%, 55% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(.9); opacity: .55; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .timeline::after { animation: ds-line linear both; animation-timeline: view(); animation-range: cover 15% cover 85%; }
+    .vis img { animation: ds-zoom linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+  }
+}
+@media (prefers-reduced-motion: reduce) { .timeline::after { transform: scaleY(1); } }
+
 /* Doctor report */
 .report-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
 .report-list { list-style: none; padding: 0; margin: 26px 0 8px; display: grid; gap: 14px; }
@@ -157,30 +179,82 @@ footer a:hover { text-decoration: underline; }
 /* Phone: one sticky download button (research: Napper) */
 .sticky-cta { display: none; }
 
+.swipe-hint { display: none; color: var(--muted); font-size: 13px; margin-top: 6px; }
+
+/* Phone (Daniel, 2026-10-24: "the mobile feels off"). Desktop is unchanged. */
 @media (max-width: 860px) {
-  nav .links { display: none; }
-  h1 { font-size: 46px; } h2 { font-size: 36px; }
-  .hero { padding: 56px 0 30px; }
+  .wrap { padding: 0 20px; }
+  nav .links, nav .btn.primary { display: none; }      /* the pinned button does this job */
+  nav .wrap { justify-content: center; height: 56px; }
+  h1 { font-size: 44px; margin: 14px 0 14px; } h2 { font-size: 34px; }
+  .eyebrow { font-size: 11.5px; letter-spacing: .1em; }
+  .lede { font-size: 18px; }
+  section { padding: 56px 0; }
+
+  /* Hero: badge on its own, phone centred, Watch beside it rather than on top of it */
+  .hero { padding: 36px 0 20px; }
   .hero-grid, .private, .pricing, .faq, .report-grid { grid-template-columns: 1fr; }
-  .paper { transform: none; max-width: 340px; }
-  .devices { height: 520px; }
-  .phone.main { left: 50%; transform: translateX(-50%); width: 250px; }
+  .hero-grid { gap: 24px; }
+  .ctas { margin: 24px 0 12px; }
+  .ctas .btn.ghost { display: none; }
+  .devices { height: 470px; }
   .phone.back { display: none; }
-  .watch { left: 4px; top: 330px; width: 130px; }
-  .trio, .bento { grid-template-columns: 1fr; }
-  section { padding: 70px 0; }
-  .timeline::before { left: 22px; }
-  .moment { grid-template-columns: 44px 1fr; row-gap: 20px; margin: 56px 0; }
+  .phone.main { left: 50%; transform: translateX(-58%); width: 220px; border-radius: 42px; padding: 9px; }
+  .phone.main video, .phone.main img { border-radius: 34px; }
+  .watch { left: auto; right: 0; top: 250px; width: 118px; border-radius: 34px; padding: 8px; }
+  .watch img { border-radius: 27px; }
+
+  /* Three benefits: a swipeable row instead of three tall cards */
+  .trio { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px;
+    width: auto; margin: 28px 20px 0; padding: 0 0 6px; scrollbar-width: none; }
+  .trio::-webkit-scrollbar { display: none; }
+  .trio div { flex: 0 0 76%; scroll-snap-align: start; padding: 18px; }
+
+  /* Night timeline: the line runs down the left with a dot per moment; the time
+     is a chip beside the dot, then the words, then the screen */
+  .timeline { padding-top: 34px; }
+  .timeline::before, .timeline::after { left: 31px; margin-left: 0; }   /* the wrap's 20px padding + the dot's centre */
+  .moment { position: relative; grid-template-columns: 1fr; row-gap: 14px; margin: 0 0 64px; padding-left: 34px; }
+  .moment:last-child { margin-bottom: 0; }
+  .moment::before { content: ""; position: absolute; left: 5px; top: 8px; width: 14px; height: 14px; border-radius: 50%;
+    background: #191730; border: 2px solid var(--purple2); box-shadow: 0 0 0 4px var(--bg); z-index: 1; }
   .time { grid-column: 1; grid-row: 1; text-align: left; }
-  .time span { font-size: 11px; padding: 6px 7px; }
-  .moment.left .copy, .moment.right .copy { grid-column: 2; grid-row: 1; text-align: left; justify-self: start; }
-  .moment.left .vis, .moment.right .vis { grid-column: 2; grid-row: 2; justify-self: start; }
-  .vis img { width: 230px; } .vis.on-ipad img { width: 100%; }
-  .copy h3 { font-size: 30px; }
-  .dawn h2 { font-size: 42px; }
-  .sticky-cta { display: block; position: fixed; left: 16px; right: 16px; bottom: 14px; z-index: 30; text-align: center;
-    background: var(--ink); color: #0b0b16; font-weight: 700; padding: 15px; border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, .5); }
-  footer { padding-bottom: 96px; }
+  .time span { font-size: 12.5px; padding: 6px 12px; }
+  .moment.left .copy, .moment.right .copy { grid-column: 1; grid-row: 2; text-align: left; justify-self: stretch; }
+  .moment.left .vis, .moment.right .vis { grid-column: 1; grid-row: 3; justify-self: center; }
+  .copy h3 { font-size: 28px; margin: 6px 0 8px; }
+  .copy p { font-size: 16.5px; max-width: none; }
+  .vis img { width: 230px; border-radius: 38px; border-width: 8px; }
+  .vis.on-watch img { width: 170px; border-radius: 44px; }
+  .vis.on-ipad img { width: 100%; border-radius: 18px; }
+
+  /* Doctor report: the paper centred, no shadow sheet past the edge */
+  .report-grid { gap: 36px; }
+  .paper { transform: none; max-width: 300px; margin: 0 auto; }
+  .paper::before { display: none; }
+  .report-list li { font-size: 16px; }
+
+  /* Feature tiles: a swipeable row */
+  .bento { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px;
+    margin: 20px 0 0; padding: 0 0 8px; scrollbar-width: none; }
+  .bento::-webkit-scrollbar { display: none; }
+  .tile { flex: 0 0 80%; scroll-snap-align: start; padding: 22px; }
+  .swipe-hint { display: block; }
+
+  /* Privacy: no big empty cloud square */
+  .cloud { display: none; }
+  .checks div { padding: 14px 16px; }
+
+  .plan { padding: 26px; }
+  .price { font-size: 38px; }
+  .faq div { padding: 18px; }
+  .dawn { padding: 90px 0 80px; }
+  .dawn h2 { font-size: 40px; }
+
+  .sticky-cta { display: block; position: fixed; left: 16px; right: 16px; z-index: 30; text-align: center;
+    bottom: calc(12px + env(safe-area-inset-bottom)); background: var(--ink); color: #0b0b16; font-weight: 700;
+    padding: 14px; border-radius: 16px; box-shadow: 0 12px 40px rgba(0, 0, 0, .5); }
+  footer { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  footer .wrap { flex-direction: column; gap: 8px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
