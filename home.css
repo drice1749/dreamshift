@@ -99,6 +99,18 @@ h2 { font-size: 52px; line-height: 1.05; letter-spacing: -.03em; margin: 12px 0 
 .vis.on-watch img { width: 200px; border-radius: 52px; }
 .vis.on-ipad img { width: 440px; border-radius: 26px; }
 
+/* Doctor report */
+.report-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
+.report-list { list-style: none; padding: 0; margin: 26px 0 8px; display: grid; gap: 14px; }
+.report-list li { padding-left: 30px; position: relative; color: var(--soft); font-size: 16.5px; }
+.report-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.report-list b { color: var(--ink); }
+.paper { display: block; position: relative; transform: rotate(2.5deg); }
+.paper::before { content: ""; position: absolute; inset: 18px -14px -14px 18px; background: #d9d5e8; border-radius: 10px;
+  transform: rotate(-4deg); opacity: .22; }
+.paper img { position: relative; border-radius: 10px; box-shadow: 0 40px 100px rgba(0, 0, 0, .65); }
+.paper:hover img { box-shadow: 0 40px 100px rgba(143, 130, 200, .35); }
+
 /* And the details (bento) */
 .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
 .tile { border-radius: 28px; background: linear-gradient(180deg, #171726, #11111c); border: 1px solid var(--line); padding: 30px; }
@@ -149,7 +161,8 @@ footer a:hover { text-decoration: underline; }
   nav .links { display: none; }
   h1 { font-size: 46px; } h2 { font-size: 36px; }
   .hero { padding: 56px 0 30px; }
-  .hero-grid, .private, .pricing, .faq { grid-template-columns: 1fr; }
+  .hero-grid, .private, .pricing, .faq, .report-grid { grid-template-columns: 1fr; }
+  .paper { transform: none; max-width: 340px; }
   .devices { height: 520px; }
   .phone.main { left: 50%; transform: translateX(-50%); width: 250px; }
   .phone.back { display: none; }
