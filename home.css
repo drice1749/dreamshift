@@ -1,0 +1,173 @@
+/* Dreamshift home page (Daniel's pick 2026-10-24: mockup A "Night glass" with
+   C's night timeline). The support and privacy pages keep style.css. */
+:root {
+  --bg: #0b0b16; --card: #14141f; --line: #23233a;
+  --ink: #ecebf5; --soft: #c3c2d6; --muted: #8f8ea8;
+  --purple: #8f82c8; --purple2: #b3a9e8; --green: #a8c39d; --sand: #e0c9a2;
+}
+* { box-sizing: border-box; margin: 0; }
+html { background: var(--bg); scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink); overflow-x: hidden;
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img, video { display: block; max-width: 100%; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 16px; top: 16px; z-index: 50; background: #fff; color: #000; padding: 8px 12px; border-radius: 8px; }
+
+/* Navigation */
+nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  background: rgba(11, 11, 22, .72); border-bottom: 1px solid rgba(255, 255, 255, .05); }
+nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+.logo img { width: 30px; height: 30px; border-radius: 8px; }
+nav .links { display: flex; gap: 26px; margin-left: auto; color: var(--soft); font-size: 15px; }
+nav .links a:hover { color: var(--ink); }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 15.5px; }
+.btn.primary { background: var(--ink); color: #0b0b16; }
+.btn.ghost { border: 1px solid var(--line); color: var(--soft); }
+.btn.ghost:hover { border-color: var(--purple); color: var(--ink); }
+/* Until 1.0 is live: a "coming soon" badge (no Apple logo; Apple's badge rules).
+   Then swap in Apple's official "Download on the App Store" badge and the app's
+   App Store link in index.html (both .store links and the nav / sticky buttons). */
+.store { display: inline-flex; align-items: center; gap: 12px; background: #000; border: 1px solid #3a3a52;
+  border-radius: 12px; padding: 9px 18px; color: #fff; }
+.store svg { width: 24px; height: 24px; fill: #fff; }
+.store small { display: block; font-size: 11px; line-height: 1; opacity: .8; }
+.store b { display: block; font-size: 19px; line-height: 1.15; font-weight: 600; }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; padding: 96px 0 56px; }
+.aurora { position: absolute; inset: -20% -10% auto; height: 900px; pointer-events: none; filter: blur(10px);
+  background: radial-gradient(50% 45% at 30% 30%, rgba(143, 130, 200, .38), transparent 70%),
+              radial-gradient(40% 40% at 75% 20%, rgba(139, 157, 195, .25), transparent 70%),
+              radial-gradient(35% 35% at 60% 70%, rgba(224, 201, 162, .12), transparent 70%); }
+.hero-grid { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; }
+.eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--purple2); font-weight: 600; }
+h1 { font-size: 72px; line-height: 1.02; letter-spacing: -.035em; margin: 18px 0 20px; font-weight: 750; }
+h1 em { font-style: normal; background: linear-gradient(90deg, var(--purple2), var(--sand));
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lede { font-size: 21px; color: var(--soft); max-width: 520px; }
+.ctas { display: flex; gap: 14px; align-items: center; margin: 34px 0 18px; flex-wrap: wrap; }
+.fine { color: var(--muted); font-size: 14px; }
+.devices { position: relative; height: 640px; }
+.phone { position: absolute; width: 300px; border-radius: 52px; padding: 12px;
+  background: linear-gradient(160deg, #2b2b40, #121220);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(255, 255, 255, .08); }
+.phone img, .phone video { width: 100%; border-radius: 42px; }
+.phone.main { left: 70px; top: 0; z-index: 2; }
+.phone.back { left: 300px; top: 70px; transform: rotate(6deg); opacity: .9; width: 260px; }
+.watch { position: absolute; left: -10px; top: 400px; z-index: 3; width: 170px; border-radius: 44px; padding: 10px;
+  background: #1b1b2a; box-shadow: 0 30px 80px rgba(0, 0, 0, .7), inset 0 0 0 1px rgba(255, 255, 255, .1); }
+.watch img { border-radius: 34px; }
+.trio { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+.trio div { padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: rgba(20, 20, 31, .6); }
+.trio b { display: block; font-size: 17px; margin-bottom: 4px; }
+.trio span { color: var(--muted); font-size: 15px; }
+
+/* Sections */
+section { padding: 110px 0; }
+.kicker { color: var(--purple2); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+h2 { font-size: 52px; line-height: 1.05; letter-spacing: -.03em; margin: 12px 0 16px; font-weight: 720; }
+.sub { color: var(--soft); font-size: 19px; max-width: 640px; }
+.center { text-align: center; }
+.center .sub { margin: 0 auto; }
+
+/* A night with Dreamshift (from mockup C) */
+.night { position: relative; background: linear-gradient(180deg, var(--bg) 0%, #0e0c1f 12%, #17132c 50%, #1d1731 78%, #120f22 92%, var(--bg) 100%); }
+.timeline { position: relative; padding: 30px 0 20px; }
+.timeline::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(169, 158, 224, .5) 6%, rgba(227, 203, 164, .55) 94%, transparent); }
+.moment { display: grid; grid-template-columns: 1fr 120px 1fr; align-items: center; margin: 90px 0; }
+.time { grid-column: 2; text-align: center; position: relative; z-index: 1; }
+.time span { display: inline-block; padding: 8px 14px; border-radius: 999px; background: #191730;
+  border: 1px solid rgba(169, 158, 224, .4); font-weight: 700; font-variant-numeric: tabular-nums; font-size: 15px; }
+.copy .tag { font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--sand); font-weight: 600; }
+.copy h3 { font-size: 40px; letter-spacing: -.025em; line-height: 1.08; margin: 8px 0 12px; }
+.copy p { color: var(--soft); font-size: 17.5px; max-width: 420px; }
+.moment.left .copy { grid-column: 1; grid-row: 1; text-align: right; justify-self: end; }
+.moment.left .vis { grid-column: 3; grid-row: 1; }
+.moment.right .copy { grid-column: 3; grid-row: 1; }
+.moment.right .vis { grid-column: 1; grid-row: 1; justify-self: end; }
+.vis img { width: 280px; border-radius: 44px; border: 10px solid #23213a; box-shadow: 0 30px 90px rgba(0, 0, 0, .6); }
+.vis.on-watch img { width: 200px; border-radius: 52px; }
+.vis.on-ipad img { width: 440px; border-radius: 26px; }
+
+/* And the details (bento) */
+.bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+.tile { border-radius: 28px; background: linear-gradient(180deg, #171726, #11111c); border: 1px solid var(--line); padding: 30px; }
+.tile h3 { font-size: 22px; letter-spacing: -.02em; margin-bottom: 6px; }
+.tile p { color: var(--muted); font-size: 15.5px; }
+.pill { display: inline-block; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px;
+  background: rgba(143, 130, 200, .18); color: var(--purple2); margin-bottom: 14px; }
+
+/* Privacy */
+.private { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.cloud { aspect-ratio: 1; border-radius: 40px; border: 1px solid var(--line); display: grid; place-items: center;
+  background: radial-gradient(60% 60% at 50% 40%, rgba(143, 130, 200, .35), transparent 70%), #10101b; }
+.cloud svg { width: 42%; fill: #fff; opacity: .92; }
+.checks { display: grid; gap: 14px; margin-top: 26px; }
+.checks div { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; }
+.checks i { font-style: normal; color: var(--green); font-weight: 700; }
+
+/* Pricing */
+.pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+.plan { border-radius: 28px; border: 1px solid var(--line); padding: 34px; background: #11111c; }
+.plan.family { background: linear-gradient(160deg, rgba(143, 130, 200, .22), #11111c 60%); border-color: rgba(143, 130, 200, .5); }
+.plan h3 { font-size: 22px; }
+.price { font-size: 44px; font-weight: 750; letter-spacing: -.02em; margin: 10px 0 2px; }
+.plan ul { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 9px; color: var(--soft); font-size: 15.5px; }
+.plan li::before { content: "✓  "; color: var(--green); }
+
+/* FAQ */
+.faq { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
+.faq div { border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+.faq b { display: block; margin-bottom: 6px; }
+.faq p { color: var(--muted); font-size: 15.5px; }
+.faq a { color: var(--purple2); }
+
+/* Dawn close (from mockup C) */
+.dawn { text-align: center; padding: 130px 0 110px;
+  background: linear-gradient(180deg, var(--bg) 0%, #1c1730 30%, #3a2c3c 60%, #6b4f4a 85%, #a07a62 100%); }
+.dawn h2 { font-size: 68px; color: #fff6ea; }
+.dawn .ctas { justify-content: center; }
+footer { background: #a07a62; color: #f6e6d6; font-size: 14px; padding: 0 0 46px; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+  border-top: 1px solid rgba(255, 255, 255, .22); padding-top: 24px; }
+footer a:hover { text-decoration: underline; }
+
+/* Phone: one sticky download button (research: Napper) */
+.sticky-cta { display: none; }
+
+@media (max-width: 860px) {
+  nav .links { display: none; }
+  h1 { font-size: 46px; } h2 { font-size: 36px; }
+  .hero { padding: 56px 0 30px; }
+  .hero-grid, .private, .pricing, .faq { grid-template-columns: 1fr; }
+  .devices { height: 520px; }
+  .phone.main { left: 50%; transform: translateX(-50%); width: 250px; }
+  .phone.back { display: none; }
+  .watch { left: 4px; top: 330px; width: 130px; }
+  .trio, .bento { grid-template-columns: 1fr; }
+  section { padding: 70px 0; }
+  .timeline::before { left: 22px; }
+  .moment { grid-template-columns: 44px 1fr; row-gap: 20px; margin: 56px 0; }
+  .time { grid-column: 1; grid-row: 1; text-align: left; }
+  .time span { font-size: 11px; padding: 6px 7px; }
+  .moment.left .copy, .moment.right .copy { grid-column: 2; grid-row: 1; text-align: left; justify-self: start; }
+  .moment.left .vis, .moment.right .vis { grid-column: 2; grid-row: 2; justify-self: start; }
+  .vis img { width: 230px; } .vis.on-ipad img { width: 100%; }
+  .copy h3 { font-size: 30px; }
+  .dawn h2 { font-size: 42px; }
+  .sticky-cta { display: block; position: fixed; left: 16px; right: 16px; bottom: 14px; z-index: 30; text-align: center;
+    background: var(--ink); color: #0b0b16; font-weight: 700; padding: 15px; border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .5); }
+  footer { padding-bottom: 96px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
