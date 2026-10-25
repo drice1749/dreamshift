@@ -70,6 +70,20 @@ h1 em { font-style: normal; background: linear-gradient(90deg, var(--purple2), v
 .trio div { padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: rgba(20, 20, 31, .6); }
 .trio b { display: block; font-size: 17px; margin-bottom: 4px; }
 .trio span { color: var(--muted); font-size: 15px; }
+/* Each card jumps to the section it's about (friend's review, 2026-10-24) */
+.trio a { display: block; padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: rgba(20, 20, 31, .6); }
+.trio a:hover { border-color: var(--purple); }
+.trio u { display: block; margin-top: 10px; text-decoration: none; color: var(--purple2); font-size: 14.5px; font-weight: 600; }
+
+/* Siri, called out under the download button */
+.siri { display: inline-flex; gap: 14px; align-items: center; margin-top: 22px; padding: 13px 18px;
+  border: 1px solid var(--line); border-radius: 16px; background: rgba(20, 20, 31, .6); }
+.siri:hover { border-color: var(--purple); }
+.siri q { display: block; font-weight: 650; font-size: 17px; }
+.siri small { display: block; color: var(--muted); font-size: 13.5px; }
+.wave { display: flex; gap: 3px; align-items: center; height: 28px; flex: none; }
+.wave b { width: 4px; height: 10px; border-radius: 3px; background: var(--purple2); }
+.wave b:nth-child(2) { height: 20px; } .wave b:nth-child(3) { height: 28px; } .wave b:nth-child(4) { height: 18px; }
 
 /* Sections */
 section { padding: 110px 0; }
@@ -138,6 +152,9 @@ h2 { font-size: 52px; line-height: 1.05; letter-spacing: -.03em; margin: 12px 0 
 .tile { border-radius: 28px; background: linear-gradient(180deg, #171726, #11111c); border: 1px solid var(--line); padding: 30px; }
 .tile h3 { font-size: 22px; letter-spacing: -.02em; margin-bottom: 6px; }
 .tile p { color: var(--muted); font-size: 15.5px; }
+.siri-tile { grid-column: span 2; }
+.phrases { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.phrases li { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); color: var(--soft); font-size: 14.5px; }
 .pill { display: inline-block; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px;
   background: rgba(143, 130, 200, .18); color: var(--purple2); margin-bottom: 14px; }
 
@@ -179,13 +196,37 @@ footer a:hover { text-decoration: underline; }
 /* Phone: one sticky download button (research: Napper) */
 .sticky-cta { display: none; }
 
+/* Menu button (phone only) and back to top (shown after a screen of scrolling) */
+.menu-btn { display: none; }
+.to-top { position: fixed; right: 20px; bottom: 24px; z-index: 25; width: 46px; height: 46px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--card); border: 1px solid var(--line); color: var(--ink); font-size: 19px;
+  opacity: 0; pointer-events: none; transition: opacity .2s; }
+.to-top.shown { opacity: 1; pointer-events: auto; }
+.to-top:hover { border-color: var(--purple); }
+
 .swipe-hint { display: none; color: var(--muted); font-size: 13px; margin-top: 6px; }
 
 /* Phone (Daniel, 2026-10-24: "the mobile feels off"). Desktop is unchanged. */
 @media (max-width: 860px) {
   .wrap { padding: 0 20px; }
-  nav .links, nav .btn.primary { display: none; }      /* the pinned button does this job */
-  nav .wrap { justify-content: center; height: 56px; }
+  nav .btn.primary { display: none; }      /* the pinned button does this job */
+  nav .wrap { justify-content: space-between; height: 56px; }
+  nav .links { display: none; }
+  .menu-btn { display: grid; place-content: center; gap: 5px; width: 42px; height: 42px; padding: 0; cursor: pointer;
+    border-radius: 12px; border: 1px solid var(--line); background: transparent; color: var(--ink); }
+  .menu-btn span { display: block; width: 18px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .2s, opacity .2s; }
+  .menu-open .menu-btn span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-open .menu-btn span:nth-child(2) { opacity: 0; }
+  .menu-open .menu-btn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .menu-open nav .links { display: flex; flex-direction: column; gap: 0; position: fixed; left: 0; right: 0; top: 56px;
+    height: calc(100dvh - 56px); margin: 0; padding: 8px 20px; background: var(--bg); font-size: 22px; color: var(--ink); }
+  .menu-open nav .links a { padding: 16px 0; border-bottom: 1px solid var(--line); font-weight: 600; }
+  .menu-open { overflow: hidden; }
+  .menu-open .sticky-cta, .menu-open .to-top { display: none; }
+  .to-top { right: 16px; bottom: calc(80px + env(safe-area-inset-bottom)); }
+  .trio a { flex: 0 0 76%; scroll-snap-align: start; padding: 18px; }
+  .siri { display: flex; margin-top: 18px; }
+  .siri-tile { grid-column: auto; }
   h1 { font-size: 44px; margin: 14px 0 14px; } h2 { font-size: 34px; }
   .eyebrow { font-size: 11.5px; letter-spacing: .1em; }
   .lede { font-size: 18px; }
