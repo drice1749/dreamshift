@@ -10,6 +10,10 @@
     }
     btn.addEventListener('click', function () { setOpen(!document.body.classList.contains('menu-open')); });
     menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+    // A tap on the dimmed page below the menu closes it
+    document.addEventListener('click', function (e) {
+      if (document.body.classList.contains('menu-open') && !e.target.closest('nav')) setOpen(false);
+    });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
   }
 
