@@ -197,7 +197,7 @@ footer a:hover { text-decoration: underline; }
 .sticky-cta { display: none; }
 
 /* Menu button (phone only) and back to top (shown after a screen of scrolling) */
-.menu-btn { display: none; }
+.menu-btn, .menu-get { display: none; }
 .to-top { position: fixed; right: 20px; bottom: 24px; z-index: 25; width: 46px; height: 46px; display: grid; place-items: center;
   border-radius: 50%; background: var(--card); border: 1px solid var(--line); color: var(--ink); font-size: 19px;
   opacity: 0; pointer-events: none; transition: opacity .2s; }
@@ -218,9 +218,16 @@ footer a:hover { text-decoration: underline; }
   .menu-open .menu-btn span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .menu-open .menu-btn span:nth-child(2) { opacity: 0; }
   .menu-open .menu-btn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* The menu drops down only as far as its list (friend's review, 2026-10-25),
+     over a dimmed page; a tap outside closes it */
   .menu-open nav .links { display: flex; flex-direction: column; gap: 0; position: fixed; left: 0; right: 0; top: 56px;
-    height: calc(100dvh - 56px); margin: 0; padding: 8px 20px; background: var(--bg); font-size: 22px; color: var(--ink); }
-  .menu-open nav .links a { padding: 16px 0; border-bottom: 1px solid var(--line); font-weight: 600; }
+    max-height: calc(100dvh - 56px); overflow-y: auto; margin: 0; padding: 4px 20px 20px; background: var(--bg);
+    border-bottom: 1px solid var(--line); border-radius: 0 0 24px 24px; box-shadow: 0 30px 60px rgba(0, 0, 0, .55);
+    font-size: 20px; color: var(--ink); }
+  .menu-open nav .links a { padding: 14px 0; border-bottom: 1px solid var(--line); font-weight: 600; }
+  .menu-open nav .links .menu-get { display: block; margin-top: 16px; padding: 14px; border: 0; border-radius: 16px;
+    background: var(--ink); color: #0b0b16; text-align: center; font-size: 17px; font-weight: 700; }
+  .menu-open::after { content: ""; position: fixed; inset: 0; z-index: 15; background: rgba(5, 5, 12, .6); }
   .menu-open { overflow: hidden; }
   .menu-open .sticky-cta, .menu-open .to-top { display: none; }
   .to-top { right: 16px; bottom: calc(80px + env(safe-area-inset-bottom)); }
