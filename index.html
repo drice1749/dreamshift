@@ -20,15 +20,16 @@
 
 <nav aria-label="Main"><div class="wrap">
   <a class="logo" href="./"><img src="assets/icon.png" alt="">Dreamshift</a>
-  <div class="links">
-    <a href="#night">A night with Dreamshift</a>
-    <a href="#report">Doctor report</a>
-    <a href="#details">Features</a>
+  <div class="links" id="menu">
+    <a href="#night">A Night with Dreamshift</a>
+    <a href="#details">Features and Details</a>
+    <a href="#report">For Your Pediatrician</a>
     <a href="#privacy">Privacy</a>
     <a href="#pricing">Pricing</a>
-    <a href="#faq">FAQ</a>
+    <a href="#faq">FAQs</a>
   </div>
   <a class="btn primary" href="#get">Get the app</a>
+  <button class="menu-btn" type="button" aria-controls="menu" aria-expanded="false" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
 
 <main id="main">
@@ -44,6 +45,10 @@
         <a class="btn ghost" href="#night">See a night with it →</a>
       </div>
       <p class="fine">Free to log · Every feature free for 14 days · Pay once, no subscription</p>
+      <a class="siri" href="#siri">
+        <span class="wave" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b></span>
+        <span><q>Log a feed in Dreamshift</q><small>Hands full? Just ask Siri. Free.</small></span>
+      </a>
     </div>
     <div class="devices" aria-hidden="true">
       <div class="phone back"><img src="assets/03-history.jpg" alt=""></div>
@@ -52,9 +57,9 @@
     </div>
   </div>
   <div class="wrap trio">
-    <div><b>One tap, half asleep</b><span>Feed, Diaper, Down, Awake. That's the whole app at 3 a.m.</span></div>
-    <div><b>Know what's next</b><span>Awake time and the next feed, without doing the math.</span></div>
-    <div><b>Your log, your iCloud</b><span>No account, no ads, no tracking. We can't see it.</span></div>
+    <a href="#night"><b>One tap, half asleep</b><span>Feed, Diaper, Down, Awake. That's the whole app at 3 a.m.</span><u>See a night →</u></a>
+    <a href="#details"><b>Know what's next</b><span>Awake time and the next feed, without doing the math.</span><u>The details →</u></a>
+    <a href="#privacy"><b>Your log, your iCloud</b><span>No account, no ads, no tracking. We can't see it.</span><u>Privacy →</u></a>
   </div>
 </header>
 
@@ -103,6 +108,24 @@
   </div>
 </section>
 
+<section id="details"><div class="wrap">
+  <span class="kicker">And the details</span>
+  <h2>Everything in reach.<br>Nothing in the way.</h2>
+  <p class="sub">A dark, dim design made for a dark room, with big buttons for a tired thumb.</p>
+  <p class="swipe-hint">Swipe for more →</p>
+  <div class="bento">
+    <div class="tile siri-tile" id="siri"><span class="pill">Siri</span><h3>Hands full? Just say it.</h3><p>Log without touching your phone, free:</p>
+      <ul class="phrases"><li>"Log a feed in Dreamshift"</li><li>"Log a diaper in Dreamshift"</li><li>"Log down in Dreamshift"</li><li>"Dreamshift is asleep"</li><li>"Dreamshift is awake"</li></ul></div>
+    <div class="tile"><span class="pill">The ring</span><h3>Awake time at a glance</h3><p>Next to the range that's typical for this age, counted from the due date. The feed interval you set always wins.</p></div>
+    <div class="tile"><span class="pill">Feed alarm</span><h3>No more setting alarms</h3><p>Rings like the Clock app one interval after the last feed, and moves every time a feed is logged.</p></div>
+    <div class="tile"><span class="pill">Down isn't asleep</span><h3>Honest about sleep</h3><p>Down records the put-down. Dreamshift shows Settling, then Likely asleep, and you can confirm it sooner.</p></div>
+    <div class="tile"><span class="pill">Widgets</span><h3>Log without opening the app</h3><p>Home and lock screen widgets, Control Center and Shortcuts.</p></div>
+    <div class="tile"><span class="pill">For your pediatrician</span><h3>A report for the doctor</h3><p>Hand over a clean summary of feeds, diapers and sleep for any dates. <a href="#report" style="color:var(--purple2)">See the report ↓</a></p></div>
+    <div class="tile"><span class="pill">Corrected age</span><h3>Fits early arrivals</h3><p>Born early? Ages count from the due date, so the typical ranges match your baby, not the calendar.</p></div>
+    <div class="tile"><span class="pill">New here?</span><h3>Learn it in a minute</h3><p>A short tour after setup, a tip on the first screen, and <a href="support/#how-it-works" style="color:var(--purple2)">How Dreamshift works</a> whenever you want it.</p></div>
+  </div>
+</div></section>
+
 <section id="report" class="report"><div class="wrap report-grid">
   <div>
     <span class="kicker">For your pediatrician</span>
@@ -122,21 +145,6 @@
   <a class="paper" href="assets/dreamshift-sample-report.pdf" target="_blank" rel="noopener" aria-label="Open the sample report">
     <img src="assets/report.jpg" alt="A sample Dreamshift care summary: daily totals of feeds, diapers and sleep, then each event with its time and details" loading="lazy">
   </a>
-</div></section>
-
-<section id="details"><div class="wrap">
-  <span class="kicker">And the details</span>
-  <h2>Everything in reach.<br>Nothing in the way.</h2>
-  <p class="sub">A dark, dim design made for a dark room, with big buttons for a tired thumb.</p>
-  <p class="swipe-hint">Swipe for more →</p>
-  <div class="bento">
-    <div class="tile"><span class="pill">The ring</span><h3>Awake time at a glance</h3><p>Next to the range that's typical for this age, counted from the due date. The feed interval you set always wins.</p></div>
-    <div class="tile"><span class="pill">Feed alarm</span><h3>No more setting alarms</h3><p>Rings like the Clock app one interval after the last feed, and moves every time a feed is logged.</p></div>
-    <div class="tile"><span class="pill">Down isn't asleep</span><h3>Honest about sleep</h3><p>Down records the put-down. Dreamshift shows Settling, then Likely asleep, and you can confirm it sooner.</p></div>
-    <div class="tile"><span class="pill">Widgets &amp; Siri</span><h3>Log without opening the app</h3><p>Home and lock screen widgets, Control Center, and "Log a feed in Dreamshift" with Siri.</p></div>
-    <div class="tile"><span class="pill">Corrected age</span><h3>Fits early arrivals</h3><p>Born early? Ages count from the due date, so the typical ranges match your baby, not the calendar.</p></div>
-    <div class="tile"><span class="pill">New here?</span><h3>Learn it in a minute</h3><p>A short tour after setup, a tip on the first screen, and <a href="support/#how-it-works" style="color:var(--purple2)">How Dreamshift works</a> whenever you want it.</p></div>
-  </div>
 </div></section>
 
 <section id="privacy"><div class="wrap private">
@@ -190,7 +198,9 @@
   <span><a href="support/">Support</a> · <a href="support/#how-it-works">How it works</a> · <a href="privacy/">Privacy</a></span>
 </div></footer>
 
+<a class="to-top" href="#main" aria-label="Back to top">↑</a>
 <a class="sticky-cta" href="#get">Get Dreamshift</a>
 <script src="timeline.js" defer></script>
+<script src="nav.js" defer></script>
 </body>
 </html>
