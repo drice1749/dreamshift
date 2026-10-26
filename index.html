@@ -53,13 +53,14 @@
     </div>
     <div class="devices" aria-hidden="true">
       <div class="phone back"><img src="assets/03-history.jpg" alt=""></div>
-      <div class="phone main"><video src="assets/preview.mp4#t=3" poster="assets/01-now.jpg" autoplay muted loop playsinline></video></div>
+      <!-- The preview video shows the old Now screen; back to the video once it's re-recorded (scripts/store-preview.sh). -->
+      <div class="phone main"><img src="assets/01-now.jpg" alt="Dreamshift's Now screen: the countdown to the next feed inside a 24-hour clock"></div>
       <div class="watch"><img src="assets/01-watch.jpg" alt=""></div>
     </div>
   </div>
   <div class="wrap trio">
-    <a href="#night"><b>One tap, half asleep</b><span>Feed, Diaper, Down, Awake. That's the whole app, day or night.</span><u>See a day →</u></a>
-    <a href="#details"><b>Know what's next</b><span>Awake time and the next feed, without doing the math.</span><u>The details →</u></a>
+    <a href="#night"><b>One tap, half asleep</b><span>Feed, Diaper, Down. That's the whole app, day or night.</span><u>See a day →</u></a>
+    <a href="#details"><b>Know what's next</b><span>A countdown to the next feed and the last 24 hours on a clock, without doing the math.</span><u>The details →</u></a>
     <a href="#privacy"><b>Your log, your iCloud</b><span>No account, no ads, no tracking. We can't see it.</span><u>Privacy →</u></a>
   </div>
 </header>
@@ -77,9 +78,9 @@
       <div class="vis on-watch"><img src="assets/01-watch.jpg" alt="Dreamshift on Apple Watch with wind-down and feed countdowns" loading="lazy"></div>
     </div>
     <div class="moment right">
-      <div class="copy"><span class="tag">Bedtime feed</span><h3>Tap Feed.<br>That's it.</h3><p>Four big buttons: Feed, Diaper, Down, Awake. Dreamshift counts from there and shows how long baby's been awake.</p></div>
+      <div class="copy"><span class="tag">Bedtime feed</span><h3>Tap Feed.<br>That's it.</h3><p>Three big buttons: Feed, Diaper, Down. Dreamshift counts down to the next feed and puts the last 24 hours on a clock: every feed, diaper and sleep, at a glance.</p></div>
       <div class="time"><span>6:40 PM</span></div>
-      <div class="vis"><img src="assets/01-now.jpg" alt="The Now screen: awake time, the four log buttons and the last feed" loading="lazy"></div>
+      <div class="vis"><img src="assets/01-now.jpg" alt="The Now screen: the countdown to the next feed inside a 24-hour clock of feeds, diapers and sleeps, with the Feed, Diaper and Down buttons" loading="lazy"></div>
     </div>
     <div class="moment left">
       <div class="copy"><span class="tag">Left, then right</span><h3>Switch sides with a tap.</h3><p>Side-by-side timers, or a bottle amount, only if you want the detail. It remembers which side you ended on.</p></div>
@@ -117,7 +118,7 @@
   <div class="bento">
     <div class="tile siri-tile" id="siri"><span class="pill">Siri</span><h3>Hands full? Just say it.</h3><p>Log without touching your phone, free:</p>
       <ul class="phrases"><li>"Log a feed in Dreamshift"</li><li>"Log a diaper in Dreamshift"</li><li>"Log down in Dreamshift"</li><li>"Dreamshift is asleep"</li><li>"Dreamshift is awake"</li></ul></div>
-    <div class="tile"><span class="pill">The ring</span><h3>Awake time at a glance</h3><p>Next to the range that's typical for this age, counted from the due date. The feed interval you set always wins.</p></div>
+    <div class="tile"><span class="pill">The clock</span><h3>Your last 24 hours, honestly</h3><p>Feeds, diapers and sleeps on a clock, with a countdown to the next feed at the interval you set. Tap any mark for its time. A forgotten Down shows as a gap, never as hours awake.</p></div>
     <div class="tile"><span class="pill">Feed alarm</span><h3>No more setting alarms</h3><p>Rings like the Clock app one interval after the last feed, and moves every time a feed is logged.</p></div>
     <div class="tile"><span class="pill">Down isn't asleep</span><h3>Honest about sleep</h3><p>Down records the put-down. Dreamshift shows Settling, then Likely asleep, and you can confirm it sooner.</p></div>
     <div class="tile"><span class="pill">Widgets</span><h3>Log without opening the app</h3><p>Home and lock screen widgets, Control Center and Shortcuts.</p></div>
